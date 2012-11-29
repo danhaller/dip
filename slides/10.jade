@@ -1,0 +1,24 @@
+section
+   h2 Service locator pattern
+
+   ul
+    li A central registry that maps abstractions to concrete class
+    li Can be modified at run time
+    li Usually a static class
+
+    pre
+      code
+        :markdown
+          public class Pharoah
+          {
+            public void Rule()
+            {
+              var builder = Container.Resolve<IBuilder>();
+              builder.Build();
+            }
+          } 
+
+    h2 cons
+      ul
+        li Testing is more effort because you have to configure the container
+        li You need to understand the whole application to know whether the container will be set up correctly

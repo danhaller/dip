@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/presentation.css">
+    <link rel="stylesheet" href="reveal.js-2.1/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js-2.1/css/theme/serif.css">
+    <link rel="stylesheet" href="reveal.js-2.1/lib/css/zenburn.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>Single Responsibility</h2>
+          <h2>Open/Closed</h2>
+          <h2>Liskov Substitution</h2>
+          <h2>Interface Segregation</h2>
+          <h2 class="fragment highlight-red">Dependency Injection</h2>
+        </section>
+        <section>
+          <h2>The problem</h2>
+          <p>In "conventional" software development.. </p>
+          <div class="fragment"><img src="img/pyramid.jpg"><img src="img/stonehenge.jpg">
+            <h2>1996</h2>
+          </div>
+          <p class="fragment">..high level classes would often depend on low level classes</p>
+        </section>
+        <section>
+          <div class="divide">
+            <div class="pane">
+              <h4 class="class-diagram">Pharoah</h4>
+              <h4 class="class-diagram">Builder</h4>
+              <h4 class="class-diagram-end">Pyramid</h4>
+            </div>
+            <div class="pane">
+              <pre class="fragment highlight-red"><code><p>public class Pharoah
+{
+  public void Rule()
+  {
+    var builder = new Builder();
+    builder.BuildPyramid();
+  }
+}</p></code></pre>
+              <pre class="fragment highlight-red"><code><p>public class Builder
+{
+  public void BuildPyramid()
+  {
+    var greatPyramid = new Pyramid(10000);
+  }
+}</p></code></pre>
+              <pre class="fragment highlight-red"><code><p>public class Pyramid
+{
+  public Pyramid(int howBig)
+  {
+  }
+}</p></code></pre>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h4>If I change the Pyramid class, at the very minimum I will have to recompile Builder and then Pharoah</h4>
+          <h4>If I break the Pyramid class, Builder cannot be compiled, and then Pharoah cannot be compiled</h4>
+          <h4>What if Pharoah wants to build Stone Henge?</h4>
+          <h4>&nbsp;</h4>
+          <h3>Depending on low level classes is bad for maintainability & scalability</h3>
+          <h4>&nbsp;</h4>
+          <h4>So what can we do?</h4>
+        </section>
+        <section>
+          <h2>The Dependency Inversion Principle</h2>
+          <h3>&nbsp;</h3>
+          <h3 class="fragment">1. High-level modules should not depend on low-level modules. Both should depend on abstractions.</h3>
+          <h3>&nbsp;</h3>
+          <h3 class="fragment">2. Abstractions should not depend upon details. Details should depend upon abstractions.</h3>
+        </section>
+        <section>
+          <h1>Abstractions?</h1>
+          <h2 class="fragment">Interfaces</h2>
+          <h2 class="fragment">Abstract classes</h2>
+        </section>
+        <section>
+          <div class="divide">
+            <div class="pane">
+              <h4 class="class-diagram">Pharoah</h4>
+              <h4 class="class-diagram-end">IBuilder</h4>
+              <h4 class="class-diagram-up">PyramidBuilder</h4>
+              <h4>StoneHengeBuilder</h4>
+              <h4>ColosseumBuilder</h4>
+              <h4>MockBuilder</h4>
+              <h4 class="class-diagram-end">IWonderOfTheWorld</h4>
+              <h4 class="class-diagram-up">Pyramid</h4>
+            </div>
+            <div class="pane">
+              <pre><code><p>public class Pharoah
+{
+  private readonly IBuilder _builder;</p>
+
+<p>public Pharoah(IBuilder builder)
+  {
+    _builder = builder;
+  }</p>
+
+<p>public void Rule()
+  {
+    _builder.Build();
+  }
+}</p></code></pre>
+              <pre class="fragment highlight-red"><code><p>public interface IBuilder
+{
+  void Build();
+}</p></code></pre>
+              <pre><code><p>public class PyramidBuilder : IBuilder
+{
+  private readonly IWonderOfTheWorld _wonder;</p>
+
+<p>public PyramidBuilder(IWonderOfTheWorld wonder)
+  {
+    _wonder = wonder;
+  }
+  public void Build()
+  {</p>
+
+<p>}
+}</p></code></pre>
+              <pre><code><p>public interface IWonderOfTheWorld
+{
+  int YearOfConstruction { get; }
+}</p></code></pre>
+              <pre><code><p>public class Pyramid : IWonderOfTheWorld
+{
+  public int YearOfConstruction
+  {
+    get { return 1996; }
+  }
+}  </p></code></pre>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h4>That's nice, but now I have to create lots of low level classes to instantiate a high level class!</h4>
+          <div class="fragment"><img src="img/unicorn.jpg">
+            <h1>Dependency Injection</h1>
+          </div>
+        </section>
+        <section>
+          <h6>Automatically creates components at run time</h6>
+          <h6>Highly configurable</h6>
+          <ul>
+            <li>Castle Windsor</li>
+            <li>StructureMap</li>
+            <li>Spring</li>
+            <li>Unity</li>
+            <li>Ninject</li>
+          </ul>
+          <h4>Service locator pattern</h4>
+          <h4>Dependency Injection pattern</h4>
+        </section>
+        <section>
+          <h2>Service locator pattern</h2>
+        </section>
+        <section> 
+          <h2>Dependency Injection pattern</h2>
+          <ul>
+            <li>A central registry that maps abstractions to concrete class</li>
+            <li>Usually a static class</li>
+            <pre><code><p>public class Pharoah
+{
+  public void Rule()
+  {
+    var builder = Container.Resolve<IBuilder>();
+    builder.Build();
+  }
+} </p></code></pre>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="reveal.js-2.1/lib/js/head.min.js"></script>
+<script src="reveal.js-2.1/js/reveal.js"></script>
+<script>
+  // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+    
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: 'reveal.js-2.1/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-2.1/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-2.1/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-2.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'reveal.js-2.1/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-2.1/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+      // { src: 'reveal.js-2.1/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+</script>

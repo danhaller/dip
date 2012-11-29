@@ -1,0 +1,48 @@
+!!! 5
+html
+  head
+    link(rel='stylesheet', href='css/presentation.css')
+    link(rel='stylesheet', href='lib/reveal.js-2.1/css/reveal.css')
+    link(rel='stylesheet', href='lib/reveal.js-2.1/css/theme/serif.css')
+    link(rel='stylesheet', href='lib/reveal.js-2.1/lib/css/zenburn.css')    
+  body
+    div.reveal
+      div.slides
+        include slides/1
+        include slides/2
+        include slides/3
+        include slides/4
+        include slides/5
+        include slides/6
+        include slides/7
+        include slides/8
+        include slides/9
+        include slides/10
+        include slides/11
+        include slides/12
+
+script(src='reveal.js-2.1/lib/js/head.min.js')
+script(src='reveal.js-2.1/js/reveal.js')
+script
+  // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: 'reveal.js-2.1/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-2.1/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-2.1/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-2.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'reveal.js-2.1/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-2.1/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+      // { src: 'reveal.js-2.1/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });

@@ -1,0 +1,74 @@
+section
+  div.divide
+    div.pane
+      h4.class-diagram Pharoah
+      h4.class-diagram-end IBuilder
+      h4.class-diagram-up PyramidBuilder
+      h4 StoneHengeBuilder
+      h4 ColosseumBuilder
+      h4 MockBuilder
+      h4.class-diagram-end IWonderOfTheWorld
+      h4.class-diagram-up Pyramid
+    div.pane
+      pre
+        code
+          :markdown
+            public class Pharoah
+            {
+              private readonly IBuilder _builder;
+
+              public Pharoah(IBuilder builder)
+              {
+                _builder = builder;
+              }
+     
+              public void Rule()
+              {
+                _builder.Build();
+              }
+            }
+
+      pre.fragment.highlight-red
+        code
+          :markdown
+            public interface IBuilder
+            {
+              void Build();
+            }
+
+      pre
+        code
+          :markdown
+            public class PyramidBuilder : IBuilder
+            {
+              private readonly IWonderOfTheWorld _wonder;
+
+              public PyramidBuilder(IWonderOfTheWorld wonder)
+              {
+                _wonder = wonder;
+              }
+              public void Build()
+              {
+
+              }
+            }
+
+      pre
+        code
+          :markdown
+            public interface IWonderOfTheWorld
+            {
+              int YearOfConstruction { get; }
+            }
+
+
+      pre
+        code
+          :markdown
+            public class Pyramid : IWonderOfTheWorld
+            {
+              public int YearOfConstruction
+              {
+                get { return 1996; }
+              }
+            }  

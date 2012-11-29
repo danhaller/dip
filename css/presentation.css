@@ -1,0 +1,42 @@
+h4.class-diagram, h4.class-diagram-end, h4.class-diagram-up, h4.class-diagram-up-down
+{
+	background-color: #333;
+	height: 100px;
+	position: relative;
+	text-align: center;
+	width:60%;
+	color: #F0F1EB !important;
+}
+
+h4.class-diagram:after {
+	content: ' ';
+	height: 0;
+	position: absolute;
+	width: 0;
+	border: 15px solid transparent;
+	border-top-color: #333;
+	top: 100%;
+	left: 0px;
+	margin-left: 45%;
+}
+
+div.divide div.pane
+{
+	width:50%;
+	float:left;
+	height:900px !important;
+}
+
+h4.class-diagram-up:after {
+	content: ' ';
+	height: 0;
+	position: absolute;
+	width: 0;
+	border: 15px solid transparent;
+	border-bottom-color: #333;
+	bottom: 100%;
+	left: 0px;
+	margin-left: 45%;
+}
+
+
