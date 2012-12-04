@@ -3,6 +3,7 @@ section
     div.pane
       h4.class-diagram Pharoah
       h4.class-diagram-end IBuilder
+      h4.class-diagram-float
       h4(onclick="Cycle()")#cycle.class-diagram-up PyramidBuilder
       h4.class-diagram-end IWonderOfTheWorld
       h4.class-diagram-up Pyramid
@@ -37,13 +38,12 @@ section
           :markdown
             public class PyramidBuilder : IBuilder
             {
-              private readonly IWonderOfTheWorld _wonder;
-              public PyramidBuilder(IWonderOfTheWorld wonder)
+              public PyramidBuilder()
               {
-                _wonder = wonder;
               }
               public void Build()
-              {            
+              {    
+                var greatPyramid = Container.Resolve&lt;IWonderOfTheWorld>();       
               }
             }
 

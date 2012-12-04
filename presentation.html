@@ -84,6 +84,7 @@
             <div class="pane">
               <h4 class="class-diagram">Pharoah</h4>
               <h4 class="class-diagram-end">IBuilder</h4>
+              <h4 class="class-diagram-float"></h4>
               <h4 onclick="Cycle()" id="cycle" class="class-diagram-up">PyramidBuilder</h4>
               <h4 class="class-diagram-end">IWonderOfTheWorld</h4>
               <h4 class="class-diagram-up">Pyramid</h4>
@@ -107,13 +108,12 @@
 }</p></code></pre>
               <pre><code><p>public class PyramidBuilder : IBuilder
 {
-  private readonly IWonderOfTheWorld _wonder;
-  public PyramidBuilder(IWonderOfTheWorld wonder)
+  public PyramidBuilder()
   {
-    _wonder = wonder;
   }
   public void Build()
   { <br />
+    var greatPyramid = Container.Resolve&lt;IWonderOfTheWorld>(); <br />
   }
 }</p></code></pre>
               <pre><code><p>public interface IWonderOfTheWorld

@@ -1,4 +1,4 @@
-h4.class-diagram, h4.class-diagram-end, h4.class-diagram-up, h4.class-diagram-up-down
+h4.class-diagram, h4.class-diagram-end, h4.class-diagram-up
 {
 	background-color: #333;
 	height: 100px;
@@ -6,6 +6,27 @@ h4.class-diagram, h4.class-diagram-end, h4.class-diagram-up, h4.class-diagram-up
 	text-align: center;
 	min-width:80%;
 	color: #F0F1EB !important;
+}
+
+h4.class-diagram-float
+{
+	background-color: white !important;
+	height: 100px;
+	position: relative;
+	float:left;
+	text-align: center;
+	color: #F0F1EB !important;
+}
+
+h4.class-diagram-float:after {
+	content: ' ';
+	height: 0;
+	position: absolute;
+	width: 0;
+	border: 15px solid transparent;
+	border-top-color: #333;
+	top: 100%;
+	left:205px;
 }
 
 h4.class-diagram:after {
