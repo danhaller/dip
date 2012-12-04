@@ -1,9 +1,28 @@
 section 
-  h2 Dependency Injection pattern
+  h3 Dependency Injection pattern
 
   ul 
     li Abstract dependencies are put into the constructor
     li The injector decides at run time what concrete class should be used.. (configurable)
+
+  pre
+    code
+      :markdown
+        Container.Register(Component.For&lt;IBuilder>().ImplementedBy&lt;PyramidBuilder>());
+
+  pre
+    code
+      :markdown
+        container.Configure(registry =>
+        {
+          registry.Scan(x =>
+          {
+            x.AssemblyContainingType&lt;Foo>();
+            x.AddAllTypesOf&lt;IFoo>();
+            x.Convention&lt;SingletonConvention>();
+          });
+        });
+  ul
     li ..and recursively creates that classes dependencies too == less boilerplate code
     li improved testability
 

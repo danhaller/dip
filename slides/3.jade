@@ -5,7 +5,7 @@ section
       h4.class-diagram Builder
       h4.class-diagram-end Pyramid
     div.pane
-      pre.fragment.highlight-red
+      pre
         code
           :markdown
             public class Pharoah
@@ -17,23 +17,23 @@ section
               }
             }
 
-      pre.fragment.highlight-red
+      pre
         code
           :markdown
             public class Builder
             {
               public void BuildPyramid()
               {
-                var greatPyramid = new Pyramid(10000);
+                var greatPyramid = new Pyramid();
               }
             }
 
-      pre.fragment.highlight-red
+      pre
         code
           :markdown
             public class Pyramid
             {
-              public Pyramid(int howBig)
+              public Pyramid()
               {
               }
             }
