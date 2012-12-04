@@ -91,14 +91,12 @@
             <div class="pane">
               <pre><code><p>public class Pharoah
 {
-  private readonly IBuilder _builder;</p>
-
-<p>public Pharoah(IBuilder builder)
+  private readonly IBuilder _builder;
+  public Pharoah(IBuilder builder)
   {
     _builder = builder;
-  }</p>
-
-<p>public void Rule()
+  }
+  public void Rule()
   {
     _builder.Build();
   }
@@ -109,16 +107,14 @@
 }</p></code></pre>
               <pre><code><p>public class PyramidBuilder : IBuilder
 {
-  private readonly IWonderOfTheWorld _wonder;</p>
-
-<p>public PyramidBuilder(IWonderOfTheWorld wonder)
+  private readonly IWonderOfTheWorld _wonder;
+  public PyramidBuilder(IWonderOfTheWorld wonder)
   {
     _wonder = wonder;
   }
   public void Build()
-  {</p>
-
-<p>}
+  { <br />
+  }
 }</p></code></pre>
               <pre><code><p>public interface IWonderOfTheWorld
 {
@@ -184,7 +180,7 @@
           </ul>
         </section>
         <section> 
-          <h2>Dependency Injection pattern</h2>
+          <h3>Dependency Injection pattern</h3>
           <ul> 
             <li>Abstract dependencies are put into the constructor</li>
             <li>The injector decides at run time what concrete class should be used.. (configurable)</li>

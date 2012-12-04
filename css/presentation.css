@@ -4,7 +4,7 @@ h4.class-diagram, h4.class-diagram-end, h4.class-diagram-up, h4.class-diagram-up
 	height: 100px;
 	position: relative;
 	text-align: center;
-	width:60%;
+	min-width:80%;
 	color: #F0F1EB !important;
 }
 
@@ -20,11 +20,15 @@ h4.class-diagram:after {
 	margin-left: 45%;
 }
 
+div.divide{
+
+}
+
 div.divide div.pane
 {
 	width:50%;
 	float:left;
-	height:900px !important;
+	height:1000px !important;
 }
 
 h4.class-diagram-up:after {
@@ -37,6 +41,11 @@ h4.class-diagram-up:after {
 	bottom: 100%;
 	left: 0px;
 	margin-left: 45%;
+}
+
+pre
+{
+	font-size:12px !important;
 }
 
 

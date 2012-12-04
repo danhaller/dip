@@ -6,6 +6,7 @@ section
       h4(onclick="Cycle()")#cycle.class-diagram-up PyramidBuilder
       h4.class-diagram-end IWonderOfTheWorld
       h4.class-diagram-up Pyramid
+    
     div.pane
       pre
         code
@@ -13,12 +14,10 @@ section
             public class Pharoah
             {
               private readonly IBuilder _builder;
-
               public Pharoah(IBuilder builder)
               {
                 _builder = builder;
               }
-     
               public void Rule()
               {
                 _builder.Build();
@@ -39,14 +38,12 @@ section
             public class PyramidBuilder : IBuilder
             {
               private readonly IWonderOfTheWorld _wonder;
-
               public PyramidBuilder(IWonderOfTheWorld wonder)
               {
                 _wonder = wonder;
               }
               public void Build()
-              {
-
+              {            
               }
             }
 
